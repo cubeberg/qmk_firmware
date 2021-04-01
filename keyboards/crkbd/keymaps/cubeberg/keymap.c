@@ -129,7 +129,11 @@ void set_keylog(uint16_t keycode, keyrecord_t *record) {
 }
 
 void oled_render_keylog(void) {
-    oled_write(keylog_str, false);
+    oled_write_ln(keylog_str, false);
+}
+
+void oled_render_name(void) {
+	oled_write_ln_P(PSTR("Cubeberg"), false);
 }
 
 void render_bootmagic_status(bool status) {
@@ -160,6 +164,7 @@ void oled_task_user(void) {
     if (is_master) {
         oled_render_layer_state();
         oled_render_keylog();
+		oled_render_name();
     } else {
         oled_render_logo();
     }
